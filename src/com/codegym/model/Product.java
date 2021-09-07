@@ -1,6 +1,8 @@
 package com.codegym.model;
 
-public class Product implements Comparable<Product>{
+import java.io.Serializable;
+
+public class Product implements Comparable<Product>, Serializable {
     private String productId;
     private String productName;
     private double price;
@@ -57,13 +59,12 @@ public class Product implements Comparable<Product>{
 
     @Override
     public String toString() {
-        return "Product{" +
+        return
                 "productId='" + productId + '\'' +
-                ", productName='" + productName + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                '}';
+                        ", productName='" + productName + '\'' +
+                        ", price=" + price +
+                        ", amount=" + amount +
+                        ", description='" + description + '\'';
     }
 
     @Override

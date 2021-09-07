@@ -72,23 +72,49 @@ public class MenuProduct {
         } while (choice != 9);
     }
 
+/*    public void writeFile() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/products.csv"));
+            List<Product> products = productManagement.getProductList();
+            oos.writeObject(products);
+            oos.flush();
+            oos.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("Success!");
+    }
+
+    public void readFile() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/products.csv"));
+            List<Product> products = (List<Product>) ois.readObject();
+            for (Product product : products){
+                System.out.println(product);
+            }
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }*/
+
     public void writeDataToFile() {
         List<Product> products = productManagement.getProductList();
         try {
             System.out.print("Bạn muốn ghi vào file nào: ");
             String filePath = scanner.nextLine();
             File file = new File(filePath);
-
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fileWriter);
-            bw.write(String.valueOf(products));
+            for (Product product: products) {
+                bw.write(String.valueOf(product));
+                bw.newLine();
+            }
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 
     public void readDataToFile() {
         try {
@@ -98,7 +124,7 @@ public class MenuProduct {
 
             FileReader fileReader = new FileReader(file);
             BufferedReader br = new BufferedReader(fileReader);
-            String line = "";
+            String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(Arrays.toString(line.split(",")));
             }
